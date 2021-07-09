@@ -107,14 +107,6 @@ input[type=button]:hover {
     margin-right: 50px;
 }
 
-#img_holder {
-    height: 200px;
-    width: 100%;
-    background-image: url("{% load static %}{% static 'image/scop.jpg'%}");
-    background-size: 400px 200px;
-    background-repeat: repeat-x;
-    margin: 0;
-}
 
 #intro_holder {
     background-color: #fadb5e;
