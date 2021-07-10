@@ -1,0 +1,242 @@
+{%load static%}
+<html lang="en-US">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: rgb(238, 238, 238);
+            border: solid 2px #be4636;
+            margin: 0;
+        }
+        
+        #admin-info {
+            height: 50px;
+            background-color: rgba(85, 85, 85, 0.671);
+            border-radius: 3px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            justify-content: space-between;
+            color: aliceblue;
+            font-size: 20px;
+            font-stretch: expanded;
+        }
+        
+        #form_holder {
+            padding-top: 30px;
+            width: 1000px;
+            height: 50%;
+            box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+            font-size: 25px;
+            background-color: #f3d351;
+        }
+        
+        #label_holder {
+            box-shadow: 0 0px 10px 0 rgb(0 0 0 / 20%), 0 0px 10px 0 rgb(0 0 0 / 19%);
+            width: 350px;
+            text-align: center;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 25px;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            background-color: #dfe1cb;
+        }
+        
+        #ss1 {
+            display: flex;
+            align-items: flex-start;
+            height: 100%;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        
+        .form_label {
+            display: flex;
+            flex-direction: row;
+            text-align: right;
+            line-height: 31px;
+            margin-bottom: 10px;
+            margin-left: 40px;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            width: 910px;
+        }
+        
+        .nav_label {
+            display: flex;
+        }
+        
+        input[type=number] {
+            font-size: 25px;
+            border-radius: 4px;
+            box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 19%);
+        }
+        
+        input[type=number]:focus {
+            border: 3px solid #555;
+        }
+        
+        input[type=submit],
+        input[type=button] {
+            background-color: #be4636;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            cursor: pointer;
+            width: fit-content;
+            margin-left: 50px;
+            height: fit-content;
+            font-size: 25px;
+        }
+        
+        input[type=submit]:hover,
+        input[type=button]:hover {
+            background-color: #555;
+            box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 19%);
+        }
+        
+        #btns {
+            margin-left: 35%;
+        }
+        
+        .small_flex {
+            display: flex;
+        }
+        
+        .nav_label {
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+        
+        #img_holder {
+            height: 200px;
+            width: 100%;
+            background-image: url("{% static 'backgrounds/scop.jpg'%}");
+            background-size: 400px 200px;
+            background-repeat: repeat-x;
+            margin: 0;
+        }
+        
+        #intro_holder {
+            background-color: #fadb5e;
+            width: 100%;
+            text-align: center;
+        }
+        
+        #main_holder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .book_img {
+            width: inherit;
+            margin-bottom: 0;
+        }
+        
+        #book_self {
+            width: 1000px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        
+        .book {
+            margin: 10px;
+            width: 200px;
+            height: 350px;
+            text-align: center;
+            font-size: 20px;
+            display: flex;
+            cursor: pointer;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .book p {
+            margin-top: 9px;
+        }
+        
+        #self_label {
+            width: 1000px;
+            font-size: 30px;
+            color: black;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="admin-info">
+        <div class="small_flex">
+            <label class="nav_label">Library Name</label>
+            <label class="nav_label">Username</label>
+        </div>
+        <label class="nav_label">Logo</label>
+
+        <input type="button" value="Logout">
+    </div>
+
+    <div id="main_holder">
+        <div id="img_holder">
+
+        </div>
+        <div id="intro_holder">
+            <p></p>
+        </div>
+
+
+
+
+        <div id="search_bar">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+
+        </div>
+
+
+
+        <input type="button" id="sub" value="Test ADD Button" onclick="Add()">
+        <div id="self_label">
+            <p>Most Popular</p>
+        </div>
+        <div id="book_self">
+            {% for book in books %}
+            <div class="book">
+
+                <img class="book_img" src="{{book.cover.url}}" alt="book_image">
+
+                <p>{{book.title}}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+    <script>
+        var i = 0;
+
+        function Add() {
+            console.log("here")
+            var book = document.getElementsByClassName("book")[i++];
+            var coln = book.cloneNode(true);
+
+            document.getElementById("book_self").appendChild(coln);
+        }
+
+        function BookInfo() {
+
+        }
+    </script>
+</body>
+
+</html>
