@@ -1,0 +1,131 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>add book</title>
+</head>
+
+<body>
+
+    <div>
+
+        <form onsubmit="return validateForm()" action="{% url 'addBook'%}" method="POST" enctype="multipart/form-data" name="addbook">
+            {% csrf_token %}
+            <h2>
+                <string>Add NewBook</string>
+            </h2>
+            <label for="uname">Title  </label><br>
+            <input placeholder="Tilte" type="text" id="memo" name="title" required><br>
+            <label for="uname">ISBN </label><br><b>
+            <input placeholder="ISBN" type="text" id="memo"min="1" max="1000" name="ISBN" required><br>
+            <label  for="name">Author Name</label><br>
+            <input placeholder="Name" type="text" id="memo" name="authorName" required><br>
+            
+            <label   for="date">Publication Date </label><br>
+            <input  type="date" id="memo" name="publishDate" required><br>
+            <label  for="cat">Category </label><br>
+            <input  type="text" id="memo" name="category" required><br>
+            
+
+            <label   for="Descritption">Descritption </label><br>
+            <input type="text" id="memo" name="descritption" > <br>
+            <label   for="Summary">Summary </label><br>
+            <input type="text" id="memo" name="summary"> <br>
+            <label   for="book-cover">Cover Image </label><br>
+            <input type="file" id="cover" name="cover" required><br><br>
+
+
+            <input type="submit"value="add">
+            <a href="{% url 'search' %}">
+                <input type="button" value="Back">
+            </a>
+
+   
+    </form>
+</div>
+  
+
+    <style>
+    body{
+        background-image: url("{% static 'image/Vintage Books And Camomiles On Wooden Background.jpg' %}");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        height:0px;
+        overflow: auto;
+        background-color:  #ffb380;
+        }
+
+h1{
+    text-align: center;
+    padding: 20px; 
+ color:    #ffb380;
+   
+
+}
+div{
+    background-color:#285a45;
+	
+    width: 500px;
+    margin: 0px 0px 0px 400px;
+    color: #ffb380;
+    font-size: 24px;
+    text-align: center;
+    height:159mm;
+}
+
+input[type=submit], input[type=button] {
+    background-color: rgb(245, 248, 205);
+    border: none;
+    color: #ffb380;
+    padding: 10px 25px;
+    text-decoration: none;
+    cursor: pointer;
+    width: fit-content;
+    margin-left: 10px;
+    height: fit-content;
+    font-size: 24px;
+}
+input
+{
+width:140px;
+}
+
+        
+
+input[type=submit]:hover, input[type=button]:hover {
+    background-color: rgb(121, 116, 116);
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 19%);
+}
+    </style>
+
+
+<script>
+    function validateForm() {
+            let title = document.forms["addbook"]["title"].value;
+            let date = document.forms["addbook"]["publishDate"].value;
+            let cat = document.forms["addbook"]["category"].value;
+            let isbn = document.forms["addbook"]["ISBN"].value;
+            
+
+            if (title == "") {                                              
+                alert("title must be filled out");
+                return false;
+            } else if (date == "") {
+                alert("date must be filled out");
+                return false;
+            } 
+            else if(cat == ""){
+                alert("category must be filled out");
+                return false;
+            }else if(isbn == ''){
+                alert("isbn must be filled out");
+                return false;
+            }
+        }
+</script>  
+</body>
+
+</html>

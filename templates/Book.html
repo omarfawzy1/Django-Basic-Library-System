@@ -1,0 +1,8 @@
+{%load static%} {% if books %} {% for book in books %}
+<a class="book" href="{% url 'book' book.id %}">
+    <img src="{{book.cover.url}}" alt="book_image">
+    <p>{{book.title}}</p>
+</a>
+{% endfor %} {% else %}
+<p> Book Not Found</p>
+{% endif %}

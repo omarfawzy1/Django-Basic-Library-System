@@ -1,0 +1,82 @@
+    #logout_button {
+        background-color: #be4636;
+        border: none;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+        width: fit-content;
+        margin-left: 50px;
+        display: flex;
+        height: fit-content;
+        font-size: 25px;
+        height: 50px;
+        align-items: center;
+    }
+    
+    .link {
+        text-decoration: none;
+        color: white;
+    }
+    
+    #logout_button img {
+        margin-left: 5px;
+    }
+    
+    #logout_button:hover {
+        background-color: #555;
+        box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 19%);
+    }
+    
+    #exit_icon {
+        background-color: #be4636;
+        border: none;
+        color: white;
+        padding: 11px 4px;
+        text-decoration: none;
+        cursor: pointer;
+        width: 14px;
+        height: 27px;
+        display: flex;
+        font-size: 25px;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    
+    .nav_label {
+        margin-left: 50px;
+        margin-right: 50px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: azure;
+    }
+    
+    .small_flex {
+        display: flex;
+        align-items: center;
+    }
+    
+    #admin-info {
+        height: 50px;
+        background-color: rgba(85, 85, 85, 0.8);
+        border-radius: 3px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: space-between;
+        color: aliceblue;
+        font-size: 20px;
+        font-stretch: expanded;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+    
+    #username {
+        margin-left: 10px;
+    }
+    
+    body {
+        margin-bottom: 0;
+    }

@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/userinfo.css'%}">
+    <title>Update info</title>
+</head>
+
+<body>
+
+
+    <form name="updateinfo" method="POST" action="{% url 'userinfo' %}" onsubmit="return validateForm()">
+        {% csrf_token %}
+        <div>
+            <h1>Update Info</h1>
+            <label>username</label><br>
+            <input type="text" required placeholder="Username" maxlength="30" name="username" value="{{user.username}}"><br><br>
+            <label>first name</label><br>
+            <input type="text" required placeholder="First name" value="{{user.first_name}}" name="fname"><br><br>
+            <label>last name</label><br>
+            <input type="text" required placeholder="Last name" value="{{user.last_name}}" name="lname"><br><br>
+            <label>email</label><br>
+            <input type="email" required placeholder="Email address" value="{{user.email}}" name="email"><br><br>
+            <label>password</label><br>
+            <input type="password" placeholder="Enter password" name="password"><br><br>
+            <input type="submit" value="save">
+            <a href="{% url 'search' %}">
+                <input type="button" value="Back">
+            </a>
+        </div>
+
+    </form>
+    <script>
+        function validateForm() {
+            let username = document.forms["updateinfo"]["username"].value;
+            let password = document.forms["updateinfo"]["password"].value;
+            if (username == "") {
+                alert("username cant be empty");
+                return false;
+            } else if (password != "") {
+                var pass = confirm("Are You Sure You Want To Change Your Password?");
+                if (r == true) {
+                    return true;
+                } else {
+                    return false;
+                }
+                return false;
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-image: url("{% static 'image/Vintage Books And Camomiles On Wooden Background.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            height: 0px;
+            overflow: auto;
+            background-color: #ffb380;
+        }
+        
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: #ffb380;
+        }
+        
+        div {
+            background-color: #285a45;
+            width: 500px;
+            margin: 0px 0px 0px 400px;
+            color: #ffb380;
+            font-size: 24px;
+            text-align: center;
+            height: 159mm;
+        }
+        
+        input[type=submit] {
+            background-color: rgb(245, 248, 205);
+            border: none;
+            color: #ffb380;
+            padding: 10px 25px;
+            text-decoration: none;
+            cursor: pointer;
+            width: fit-content;
+            margin-left: 10px;
+            height: fit-content;
+            font-size: 24px;
+        }
+        
+        input[type=button] {
+            background-color: rgb(245, 248, 205);
+            border: none;
+            color: #ffb380;
+            padding: 10px 25px;
+            text-decoration: none;
+            cursor: pointer;
+            width: fit-content;
+            margin-left: 10px;
+            height: fit-content;
+            font-size: 24px;
+        }
+        
+        input[type=button]:hover {
+            background-color: rgb(121, 116, 116);
+            box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 19%);
+        }
+        
+        input[type=submit]:hover {
+            background-color: rgb(121, 116, 116);
+            box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 19%);
+        }
+    </style>
+</body>
+
+</html>

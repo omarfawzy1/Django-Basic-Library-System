@@ -1,0 +1,67 @@
+{%load static%}
+<!DOCTYPE html>
+<html lamg="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/SignUp.css'%}">
+    <title>"Sign Up"</title>
+</head>
+
+<body>
+    <div class="container1">
+        <form class="form" method="POST" action="{%url 'signUp'%}" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <div class="head">
+                <img src="{% static 'icons/library.jpg'%}" class="logo">
+                <h1>Sign Up </h1>
+            </div>
+            <!--Form-->
+            <div class="w1">
+                <div class="fname">
+                    <label>First Name</label>
+                    <input type="text" name="fname">
+                </div>
+                <div class="sname">
+                    <label>Second Name</label>
+                    <input type="text" name="lname">
+                </div>
+            </div>
+            <div class="w2">
+                <label>Username</label>
+                <input type="text" name="username">
+            </div>
+            <div class="w2">
+                <label>E-Mail</label>
+                <input type="text" name="email">
+            </div>
+            <div class="w2">
+                <label>Password</label>
+                <input type="text" name="password">
+            </div>
+            <div class="chkbx1">
+                <input type="checkbox" class="Admin" name="isAdmin">
+                <label class="Admin">Admin</label>
+            </div>
+            <button class="btn">Create Account !</button>
+        </form>
+        <!--Image-->
+        <div class="image">
+            <img src="{% static 'image/Vintage Books And Camomiles On Wooden Background.jpg' %}" class="img" alt="" />
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            let username = document.forms["signin"]["username"].value;
+            let password = document.forms["signin"]["password"].value;
+            if (username == "") {
+                alert("username must be filled out");
+                return false;
+            } else if (password == "") {
+                alert("password must be filled out");
+                return false;
+            }
+
+        }
+    </script>
+</body>

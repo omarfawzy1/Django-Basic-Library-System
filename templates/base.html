@@ -1,0 +1,126 @@
+{% load static %}
+
+
+<html lang="en-US">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <style>
+        #img_holder {
+            height: 200px;
+            width: 100%;
+            background-image: url("{% static 'image/scop.jpg'%}");
+            background-size: 400px 200px;
+            background-repeat: repeat-x;
+            margin: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="admin-info">
+        <div class="small_flex">
+            <label class="nav_label">Library Name</label>
+            <label class="nav_label">Username</label>
+        </div>
+        <label class="nav_label">Logo</label>
+
+        <input type="button" value="Logout">
+    </div>
+
+    <div id="main_holder">
+        <div id="img_holder">
+
+        </div>
+        <div id="intro_holder">
+            <p></p>
+        </div>
+
+        <input type="button" id="sub" value="Test ADD Button" onclick="Add()">
+        <div id="self_label">
+            <p>Most Popular</p>
+        </div>
+        <div id="book_self">
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover1.jpg'%}" alt="book_image">
+                <p>First book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover2.jpg'%}" alt="book_image">
+                <p>Second book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover3.jpg'%}" alt="book_image">
+                <p>Third book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover2.jpg'%}" alt="book_image">
+                <p>Forth book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover4.jpg'%}" alt="book_image">
+                <p>Long Name 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 Book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover2.jpg'%}" alt="book_image">
+                <p>Science Fiction book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover3.jpg'%}" alt="book_image">
+                <p>First book</p>
+            </div>
+
+        </div>
+        <div id="self_label">
+            <p>Borrowed</p>
+        </div>
+        <div id="book_self">
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover1.jpg'%}" alt="book_image">
+                <p>First book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover2.jpg'%}" alt="book_image">
+                <p>Second book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover3.jpg'%}" alt="book_image">
+                <p>Third book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover2.jpg'%}" alt="book_image">
+                <p>Action book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover4.jpg'%}" alt="book_image">
+                <p>Comic book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover2.jpg'%}" alt="book_image">
+                <p>Scientfic book</p>
+            </div>
+            <div class="book">
+                <img class="book_img" src="{% static 'image/book_cover3.jpg'%}" alt="book_image">
+                <p>First book</p>
+            </div>
+
+        </div>
+        <script>
+            var i = 0;
+
+            function Add() {
+                console.log("here")
+                var book = document.getElementsByClassName("book")[i++];
+                var coln = book.cloneNode(true);
+
+                document.getElementById("book_self").appendChild(coln);
+            }
+        </script>
+</body>
+
+</html>
+{% include 'parts/navbar.html' %} {% block content %} {% endblock content %} {% include 'parts/footer.html'%}

@@ -1,0 +1,27 @@
+ {% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/nav_bar.css'%}">
+</head>
+{% block content %}
+
+<body>
+    <div id="admin-info">
+        <div class="small_flex">
+            <label class="nav_label"><a class='link' href="{% url 'search'%}">University Library</a></label> {% if user.is_authenticated %}
+            <a class="nav_label" href="{% url 'userinfo' %}" style="cursor: pointer;">
+                <img src="{% static 'icons/user.png'%}">
+                <label id='username'>  {{ user.get_username }}</label> {% if user.is_staff %}
+                <a class='link' href="{% url 'admin:index'%}">\admin site</a> {% endif %}
+            </a>
+            {% else %}
+            <p>Welcome, new user. Please log in.</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <a id='logout_button' href="{% url 'logout' %}">Logout   <img src="{% static 'icons/exit.png'%}"> </a>
+        </div>
+    </div>
+</body>
+{% endblock %}

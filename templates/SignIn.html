@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lamg="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/SignUp.css'%}">
+    <title>"Sign In"</title>
+</head>
+
+<body>
+    <div class="container1">
+        <form name="signin" class="form" method="POST" action="{% url 'signIn' %}" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <div class="head">
+                <img src="{% static 'icons/library.jpg' %}" class="logo">
+                <h1>Sign In </h1>
+            </div>
+            <!--Form-->
+            <div class="w2">
+                <label>Username</label>
+                <input type="text" name="username">
+            </div>
+            <div class="w2">
+                <label>Password</label>
+                <input type="password" name="password">
+            </div>
+            <input class="btn" type="submit" value="Sign In">
+            <button class="btn"><a href="{% url 'signUp' %}">Create Account !</a></button>
+        </form>
+        <!--Image-->
+        <div class="image">
+            <img src="{% static 'image/Vintage Books And Camomiles On Wooden Background.jpg' %}" class="img" alt="" />
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            let username = document.forms["signin"]["username"].value;
+            let password = document.forms["signin"]["password"].value;
+            if (username == "") {
+                alert("username must be filled out");
+                return false;
+            } else if (password == "") {
+                alert("password must be filled out");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>

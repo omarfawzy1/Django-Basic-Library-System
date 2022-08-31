@@ -1,0 +1,118 @@
+{% load static %}
+
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #ffb380;
+        }
+        
+        p {
+            color: #285a45;
+            font-size: 24px;
+            text-align: center;
+            padding-right: 1150px;
+        }
+        
+        button:hover {
+            background-color: rgb(245, 248, 205);
+            border: none;
+            color: #ffb380;
+            text-decoration: none;
+            cursor: pointer;
+            width: fit-content;
+            height: fit-content;
+            font-size: 24px;
+            background-color: #285a45;
+            box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 19%);
+        }
+        
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20px;
+            padding-right: 950px;
+        }
+        
+        .img {
+            margin-top: 4px;
+            margin-top: 9px;
+            height: 300px;
+            width: 210px;
+            box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%), 0 6px 13px 0 rgb(0 0 0 / 18%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+
+
+
+        <img src='{{book.cover.url}}'>
+        <p>Book Title: {{book.title}}</p>
+        <p>Book Description: {{book.description}}</p>
+        <p>Book Summary: {{book.summary}}</p>
+        <p> Book ISBN : {{book.ISBN}}</p>
+        <p>Author Name : {{book.authorName}}</p>
+        <p> Book Publication Date: {{book.publishDate}}</p>
+        <p> Book Category: {{book.cat}}</p>
+        <p id='returnDate'> </p>
+    </div>
+
+    <div class="center">
+
+        <button style="background-color:#285a45;color:#ffb380;  font-size: 20px;" id="borrow" onclick="borrow()">Borrow Book</button>
+
+        <button style="background-color:#285a45;color:#ffb380;  font-size: 20px;" id="return" onclick="returnBook()">  Return Book  </button>
+
+        <button style="background-color:#285a45;color:#ffb380;  font-size: 20px;" id="extend" onclick="extend()">  Extend Borrowing Duration </button>
+    </div>
+</body>
+<script>
+    function borrow() {
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            if (this.responseText.includes("Successfully")) {
+                console.log(this.responseText)
+                document.getElementById("borrow").disabled = true;
+                document.getElementById("returnDate").innerHTML = this.responseText.substring(12)
+            }
+        }
+        xhttp.open("GET", "{% url 'borrow' book.id %}", true);
+        xhttp.send();
+    }
+
+
+    function extend() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            if (this.responseText.includes("Successfully")) {
+                console.log(this.responseText)
+                document.getElementById("extend").disabled = true;
+                document.getElementById("returnDate").innerHTML = this.responseText.substring(12)
+            }
+        }
+        xhttp.open("GET", "{% url 'extend' book.id %}", true);
+        xhttp.send();
+    }
+
+    function returnBook() {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function() {
+            if (this.responseText.includes("Successfully")) {
+                console.log(this.responseText)
+                document.getElementById("return").disabled = true;
+                document.getElementById("returnDate").innerHTML = "Returned"
+            }
+        }
+        xhttp.open("GET", "{% url 'return' book.id %}", true);
+        xhttp.send();
+    }
+</script>
+
+</html>

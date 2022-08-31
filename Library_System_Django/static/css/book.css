@@ -1,0 +1,27 @@
+.book {
+    margin: 10px;
+    width: 227.5;
+    height: 364;
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    cursor: pointer;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    background-color: azure;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.book img {
+    margin-top: 4px;
+    margin-top: 9px;
+    height: 300px;
+    width: 210px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%), 0 6px 13px 0 rgb(0 0 0 / 18%);
+}
+
+.book p {
+    margin-top: 9px;
+}

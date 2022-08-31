@@ -1,0 +1,136 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffb380;
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+.head {
+    width: 90%;
+}
+
+.head h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    color: #285a45;
+}
+
+.container1 {
+    width: 90%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 95vh;
+    background-color: #f8f9fb;
+    display: flex;
+    box-shadow: 8px 10px 30px rgba(8, 8, 8, 0.2);
+}
+
+.logo {
+    width: 100px;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 55%;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image {
+    width: 45%;
+}
+
+.w2 {
+    width: 90%;
+    position: relative;
+    border-bottom: 2px solid #b2b2b2;
+    margin-bottom: 13px;
+}
+
+.w1 {
+    display: flex;
+    width: 90%;
+    justify-content: center;
+}
+
+.fname {
+    border-bottom: 2px solid #b2b2b4;
+    width: 40%;
+    position: relative;
+}
+
+.sname {
+    border-bottom: 2px solid #b2b2b4;
+    width: 50%;
+    margin-left: auto;
+    position: relative;
+}
+
+.label {
+    font-size: 12px;
+    color: #676765;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    min-height: 25px;
+    border-bottom: none;
+    padding: 15px 0px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding-bottom: 2px;
+}
+
+input {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    background: transparent;
+    color: #111;
+    font-weight: 500;
+    padding: 10px 0px;
+}
+
+.btn {
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+    border-radius: 40px;
+    outline: none;
+    font-weight: 500;
+    font-size: 1rem;
+    border: none;
+    background: #285a45;
+    color: #fff;
+    box-shadow: 8px 10px 30px rgba(8, 8, 8, 0.2);
+}
+
+.btn a {
+    text-decoration: none;
+    color: whitesmoke;
+    border: none;
+}
+
+.btn:hover {
+    background: #8f8f8f;
+    color: #fff;
+}

@@ -1,0 +1,329 @@
+{%load static%}
+<html lang="en-US">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/book.css'%}">
+    <link rel="stylesheet" href="{% static 'css/search_bar.css'%}">
+    <style>
+        body {
+            background-color: #ffb380;
+            margin: 0;
+        }
+        
+        #form_holder {
+            padding-top: 30px;
+            width: 1000px;
+            height: 50%;
+            box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+            font-size: 25px;
+            background-color: #f3d351;
+        }
+        
+        #label_holder {
+            box-shadow: 0 0px 10px 0 rgb(0 0 0 / 20%), 0 0px 10px 0 rgb(0 0 0 / 19%);
+            width: 350px;
+            text-align: center;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 25px;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            background-color: #dfe1cb;
+        }
+        
+        #ss1 {
+            display: flex;
+            align-items: flex-start;
+            height: 100%;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        
+        .form_label {
+            display: flex;
+            flex-direction: row;
+            text-align: right;
+            line-height: 31px;
+            margin-bottom: 10px;
+            margin-left: 40px;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            width: 910px;
+        }
+        
+        input[type=number] {
+            font-size: 25px;
+            border-radius: 4px;
+            box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 19%);
+        }
+        
+        input[type=number]:focus {
+            border: 3px solid #555;
+        }
+        
+        input[type=submit],
+        input[type=button],
+        .btn {
+            background-color: #be4636;
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            text-decoration: none;
+            cursor: pointer;
+            width: fit-content;
+            margin-left: 50px;
+            height: fit-content;
+            font-size: 25px;
+        }
+        
+        input[type=submit]:hover,
+        input[type=button]:hover {
+            background-color: #555;
+            box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 19%);
+        }
+        
+        #btns {
+            margin-left: 35%;
+        }
+        
+        .small_flex {
+            display: flex;
+        }
+        
+        #img_holder {
+            height: 200px;
+            width: 100%;
+            background-image: url("{% static 'image/scop.jpg'%}");
+            background-size: 400px 200px;
+            background-repeat: repeat-x;
+            margin: 0;
+        }
+        
+        #intro_holder {
+            background-color: #fadb5e;
+            width: 100%;
+            text-align: center;
+        }
+        
+        #main_holder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        #book_self {
+            width: 1000px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        
+        #self_label {
+            width: 1000px;
+            font-size: 30px;
+            color: black;
+            justify-content: space-between;
+            display: flex;
+        }
+        
+        .category_div {
+            color: black;
+            background: #fadb5e;
+            height: fit-content;
+            width: 175px;
+            text-align: center;
+            border-bottom-right-radius: 16px;
+            border-bottom-left-radius: 16px;
+            margin: 0 14px;
+            font-size: 21px;
+            text-decoration: none;
+            margin-right: 58px;
+            margin-left: 94px;
+        }
+        
+        .category_div button {
+            width: 80%;
+            font-size: 20px;
+            margin-bottom: 17px;
+            background: beige;
+            border-radius: 11px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .category_div button:hover {
+            width: 80%;
+            font-size: 20px;
+            margin-bottom: 17px;
+            background: rgb(172, 141, 127);
+            border-radius: 11px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .main {
+            display: flex;
+            width: 100%;
+            justify-content: flex-start;
+        }
+        
+        #add_btn {
+            display: flex;
+            text-decoration: none;
+            color: #555;
+            font-size: 20px;
+            align-items: center;
+        }
+        
+        #add_btn img {
+            margin-left: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <div id="main_holder">
+
+        <div id="img_holder">
+            {% include "parts/nav_bar.html" %}
+        </div>
+        <div id="intro_holder">
+            <p></p>
+        </div>
+
+        <div class='main'>
+
+            <div class="category_div">
+                {% for c in cat%}
+                <button onclick="LoadCategory('{{c.cat}}')">{{c.cat}}</button> {%endfor%}
+
+            </div>
+            <div>
+                <div>
+
+                    {% csrf_token %}
+                    <div class="search_div">
+                        <input type="text" placeholder="Search.." name="searchValue" id="search_bar">
+                        <select name="searchBy" id="search_option" onchange="search_date()">
+                            <option value= "None" >Search by:</option>
+                            {%for field in fileds%}
+                            <option value="{{ field }}">{{ field }}</option>
+                            {% endfor %}    
+                            </select>
+                        <button onclick="loadSearch()"> <img alt = 'icon' src = "{% static 'icons/magnifying-glass.png'%}"> </button>
+                    </div>
+                </div>
+
+                <div id="self_label">
+                    {% if user.is_staff%}
+                    <p>All Books</p>
+                    <a id='add_btn' href="{% url 'addBook'%}">Add Book<img src="{% static 'icons/plus.png' %}"></a> {% else %}
+                    <p>Most Popular</p>
+                    {% endif%}
+                </div>
+                <div id="book_self">
+                    {% if books %} {% for book in books %}
+                    <a class="book" href="{% url 'book' book.id %}">
+                        <img src="{{book.cover.url}}" alt="book_image">
+                        <p>{{book.title}}</p>
+                    </a>
+                    {% endfor %} {% else %}
+                    <p> Book Not Found</p>
+                    {% endif %}
+                </div>
+
+                {% if borrowedBooks%}
+                <div id="self_label">
+                    <p>Borrowed Books</p>
+                </div>
+                <div id="book_self">
+                    {% for book in borrowedBooks %}
+                    <a class="book" href="{% url 'book' book.id %}">
+                        <img src="{{book.cover.url}}" alt="book_image">
+                        <p>{{book.title}}</p>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endif%}
+            </div>
+        </div>
+    </div>
+    <script>
+        var dateInput = document.createElement('input');
+        dateInput.type = 'date';
+        dateInput.value = "{{value|date:'d/m/Y'}}";
+        dateInput.name = 'searchValue';
+        dateInput.id = 'search_bar';
+
+        var textInput = document.createElement('input');
+        textInput.type = 'text';
+        textInput.name = 'searchValue';
+        textInput.id = 'search_bar';
+        textInput.placeholder = "Search..";
+
+
+        function search_date() {
+            search_option = document.getElementById('search_option')
+            object = document.getElementById('search_bar');
+            if (search_option.value == "Publish Date") {
+                object.parentNode.replaceChild(dateInput, object);
+            } else {
+                textInput.placeholder = "Search by Book " + search_option.value;
+                textInput.value = object.value;
+                object.parentNode.replaceChild(textInput, object);
+            }
+        }
+
+        function loadSearch() {
+            const xhttp = new XMLHttpRequest();
+
+            searchValue = document.getElementById('search_bar').value
+            searchBy = document.getElementById('search_option').value
+
+            xhttp.onload = function() {
+                document.getElementById("book_self").innerHTML = this.responseText;
+            }
+
+            if (searchValue == '') {
+
+                url = "{%url 'searchAjax'  searchBy='s2'%}";
+
+                url = url.replace('s2', searchBy);
+            } else {
+
+                url = "{%url 'searchAjax' searchValue='s1' searchBy='s2'%}";
+                url = url.replace('s1', searchValue);
+                url = url.replace('s2', searchBy);
+
+
+            }
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+
+        function LoadCategory(cat) {
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.onload = function() {
+                document.getElementById("book_self").innerHTML = this.responseText;
+            }
+
+            url = "{%url 'filterCategory' category='s1'%}";
+            url = url.replace('s1', cat);
+
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+    </script>
+</body>
+
+</html>

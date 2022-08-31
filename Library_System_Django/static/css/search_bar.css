@@ -1,0 +1,31 @@
+.search_div {
+    padding: 3px;
+    height: 50px;
+    display: flex;
+    width: 1000px;
+}
+
+.search_div select {
+    border: solid 1px black;
+    font-size: 23px;
+    border-right: 0px;
+    border-width: 2px;
+}
+
+.search_div button {
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.search_div input {
+    height: 50px;
+    width: 950px;
+    font-size: 23px;
+    border-radius: 10px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    border-right: 0px;
+}
