@@ -1,82 +1,204 @@
 {% load static %}
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ book.title }}</title>
     <style>
+        /* Global styles */
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: #ffb380;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
         }
-        
-        p {
-            color: #285a45;
-            font-size: 24px;
-            text-align: center;
-            padding-right: 1150px;
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
         }
-        
-        button:hover {
-            background-color: rgb(245, 248, 205);
-            border: none;
-            color: #ffb380;
-            text-decoration: none;
-            cursor: pointer;
-            width: fit-content;
-            height: fit-content;
-            font-size: 24px;
-            background-color: #285a45;
-            box-shadow: 0 2px 2px 0 rgb(0 0 0 / 20%), 0 2px 2px 0 rgb(0 0 0 / 19%);
-        }
-        
-        .center {
+
+        /* Header */
+        header {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            height: 20px;
-            padding-right: 950px;
+            padding: 20px;
+            background-color: #333333;
+            color: #ffffff;
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
         }
-        
-        .img {
-            margin-top: 4px;
-            margin-top: 9px;
-            height: 300px;
-            width: 210px;
-            box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%), 0 6px 13px 0 rgb(0 0 0 / 18%);
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #ffb380;
+        }
+
+        /* Book details */
+        .book {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .book-image {
+            width: 25%;
+
+        }
+
+        .book-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .book-details {
+            width: 60%;
+            padding: 30px;
+            background-color: #ffffff;
+        }
+
+        .book-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333333;
+            margin-top: 0;
+        }
+
+        .book-description {
+            font-size: 18px;
+            color: #666666;
+            margin-top: 20px;
+        }
+
+        .book-info {
+            margin-top: 30px;
+        }
+
+        .book-info p {
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 10px;
+        }
+
+        .book-info span {
+            font-weight: bold;
+            color: #333333;
+        }
+
+        .book-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .book-button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .book-button:hover {
+            cursor: pointer;
+        }
+
+        .book-borrow {
+            background-color: #ffb380;
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-return {
+            background-color: #285a45;
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-extend {
+            background-color: #7f7f7f;
+            box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 
+
 <body>
-    <div class="main">
-
-
-
-
-        <img src='{{book.cover.url}}'>
-        <p>Book Title: {{book.title}}</p>
-        <p>Book Description: {{book.description}}</p>
-        <p>Book Summary: {{book.summary}}</p>
-        <p> Book ISBN : {{book.ISBN}}</p>
-        <p>Author Name : {{book.authorName}}</p>
-        <p> Book Publication Date: {{book.publishDate}}</p>
-        <p> Book Category: {{book.cat}}</p>
-        <p id='returnDate'> </p>
+<header>
+    <h1 class="logo">Book Library</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Books</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container">
+    <div class="book">
+        <div class="book-image">
+            <img src="{{ book.cover.url }}" alt="{{ book.title }}">
+        </div>
+        <div class="book-details">
+            <h2 class="book-title">{{ book.title }}</h2>
+            <p class="book-description">{{ book.summary }}</p>
+            <div class="book-info">
+                <p><span>Author:</span> {{ book.authorName }}</p>
+                <p><span>Genre:</span> {{ book.cat }}</p>
+                <p><span>Published:</span> {{ book.publishDate }}</p>
+                <p><span>ISBN:</span> {{ book.ISBN }}</p>
+                <p id="returnDate"><span></span> </p>
+            </div>
+            <div class="book-buttons">
+                <button id="borrow" class="book-button book-borrow" onclick="borrow()">Borrow Book</button>
+                <button id="return" class="book-button book-return" onclick="returnBook()">Return Book</button>
+                <button id="extend" class="book-button book-extend" onclick="extend()">Extend Borrowing Duration</button>
+            </div>
+        </div>
     </div>
-
-    <div class="center">
-
-        <button style="background-color:#285a45;color:#ffb380;  font-size: 20px;" id="borrow" onclick="borrow()">Borrow Book</button>
-
-        <button style="background-color:#285a45;color:#ffb380;  font-size: 20px;" id="return" onclick="returnBook()">  Return Book  </button>
-
-        <button style="background-color:#285a45;color:#ffb380;  font-size: 20px;" id="extend" onclick="extend()">  Extend Borrowing Duration </button>
-    </div>
+</div>
 </body>
+
 <script>
     function borrow() {
 
         const xhttp = new XMLHttpRequest();
-        xhttp.onload = function() {
+        xhttp.onload = function () {
             if (this.responseText.includes("Successfully")) {
                 console.log(this.responseText)
                 document.getElementById("borrow").disabled = true;
@@ -90,7 +212,7 @@
 
     function extend() {
         const xhttp = new XMLHttpRequest();
-        xhttp.onload = function() {
+        xhttp.onload = function () {
             if (this.responseText.includes("Successfully")) {
                 console.log(this.responseText)
                 document.getElementById("extend").disabled = true;
@@ -103,7 +225,7 @@
 
     function returnBook() {
         const xhttp = new XMLHttpRequest();
-        xhttp.onload = function() {
+        xhttp.onload = function () {
             if (this.responseText.includes("Successfully")) {
                 console.log(this.responseText)
                 document.getElementById("return").disabled = true;
